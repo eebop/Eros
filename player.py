@@ -2,7 +2,7 @@ from base import base, request
 import pygame
 import numpy as np
 import math
-from computer_movements import move_as_computer
+from lan import move_as_computer
 
 class player(base):
     def __init__(self, isplayer, location=None):

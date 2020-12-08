@@ -13,7 +13,7 @@ class Framework:
         return getattr(sys.modules[self._main_name], name)
 
     def setup_rockets(self):
-        self._items = [self.get_item("player", True), self.get_item("player", False, [0, 0])]
+        self._items = [self.get_item("player", True), self.get_item("player", False, [0, 0]), self.get_item("player", False, [100, 300])]
 
     def get_item(self, name, *data, **kwdata):
         if not name in sys.modules:
