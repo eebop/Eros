@@ -1,5 +1,4 @@
 import framework
-import time
 import pygame
 pygame.init()
 
@@ -13,5 +12,3 @@ else:
 handler = framework.Framework()
 
 handler.run(screen)
-
-time.sleep(10)

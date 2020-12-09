@@ -6,14 +6,13 @@ import sys
 class Framework:
     def __init__(self):
         self.extentions = {'screen_data': self.get_item("screen_data"), 'target': self.get_item('target')}
+        self.absolute_extentions = {}
         self._extention_data = {}
+        self.move_extention = self.get_item('move')
         self.setup_rockets()
 
-    def _request(self, name):
-        return getattr(sys.modules[self._main_name], name)
-
     def setup_rockets(self):
-        self._items = [self.get_item("player", True), self.get_item("player", False, [0, 0]), self.get_item("player", False, [100, 300])]
+        self._items = [self.get_item("player", True), self.get_item("player", False, [100, 0])]
 
     def get_item(self, name, *data, **kwdata):
         if not name in sys.modules:
@@ -34,7 +33,8 @@ class Framework:
                 should_check = 0
             else:
                 e = None
-            screen.blits([x.update(t, e) for x in self._items])
+            move = self.move_extention.run(screen, e)
+            screen.blits([(image, move+location) for image, location in [x.update(t, e) for x in self._items]])
             [x.run(screen, e) for x in self.extentions.values() if x.enabled()]
             pygame.display.flip()
             screen.fill((32, 32, 32))

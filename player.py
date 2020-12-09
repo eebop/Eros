@@ -8,8 +8,8 @@ class player(base):
     def __init__(self, isplayer, location=None):
         self.image = pygame.image.load('/Users/kieran/Documents/python_projects/Eros/images/poco3.png')
         self.data = '''0x4b (standerd version)
-crew: 2
-excess heat: 20 (100% of normal)'''
+crew: %s
+excess heat: %s (%s%% of normal)'''
         self.image_now = self.image
         if not location:
             self.loc = np.array([400, 400], dtype=float)
