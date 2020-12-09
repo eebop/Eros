@@ -13,5 +13,3 @@ else:
 handler = framework.Framework()
 
 handler.run(screen)
-
-time.sleep(10)
