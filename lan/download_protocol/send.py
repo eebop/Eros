@@ -6,7 +6,6 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(('', 10998))
 s.listen(1)
 
-file = open('/tmp/ErosPickle', 'wb')
 
 
 def send(clientsocket, obj):
@@ -18,5 +17,3 @@ def send(clientsocket, obj):
 clientsocket, address = s.accept()
 
 send(clientsocket, (46, 93, (2.01, True), send))
-file.close()
-os.system('rm /tmp/ErosPickle')

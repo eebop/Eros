@@ -5,8 +5,6 @@ import os
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(('', 10999))
 
-os.system('mkfile 0 /tmp/ErosUnpickle')
-file = open('/tmp/ErosUnpickle', 'rb')
 
 def recive(socket):
     num_bytes = ord(socket.recv(1))
@@ -21,6 +19,3 @@ def send():
 
 print(recive(s))
 
-file.close()
-
-os.system('rm /tmp/ErosUnpickle')
