@@ -20,6 +20,6 @@ else:
 
 pygame.display.set_caption('Eros')
 
-handler = framework.Framework()
+handler = framework.Framework() 
 
 handler.run(screen)
