@@ -3,8 +3,9 @@ import pygame
 import numpy as np
 import math
 from lan import move_as_computer
+from move import move
 
-class player(base):
+class player(base, move):
     def __init__(self, isplayer, location=None):
         self.image = pygame.image.load('/Users/kieran/Documents/python_projects/Eros/images/poco3.png')
         self.data = '''0x4b (standerd version)
@@ -15,6 +16,7 @@ excess heat: %s (%s%% of normal)'''
             self.loc = np.array([400, 400], dtype=float)
         else:
             self.loc = np.array(location, dtype=float)
+        self.location = None # To placate move/move
         self.degrees = 90
         self.isplayer = isplayer
         self.update_movement()
@@ -22,6 +24,9 @@ excess heat: %s (%s%% of normal)'''
         self.a = False
         self.d = False
         self.f = False
+        self.running_events = [False, False, False, False]
+        self.events = [pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d]
+        self.movements = [[0, -1], [0, 1], [-1, 0], [1, 0]]
 
         self.missile_loc = False
         self.target = list(reversed(self.loc + np.array(self.image_now.get_size())/2))
@@ -43,30 +48,15 @@ excess heat: %s (%s%% of normal)'''
 
     def move(self, data):
         if data != None:
-            self.w = False
-            self.a = False
-            self.d = False
-            self.f = False
             for event in data:
-                if event.type == pygame.TEXTINPUT:
-                    if event.text == 'w':
-                        self.w = True
-
-
-                    if event.text == 'a':
-                        self.a = True
-
-                    if event.text == 'd':
-                        self.d = True
-
                 if event.type == pygame.KEYDOWN:
-
                     if event.key == pygame.K_f:
                         self.f = True
 
-        self.run_with_data()
+        self.run(None, data)
 
-    def run_with_data(self):
+    def _update(self):
+        self.w, self.s, self.a, self.d = self.running_events
         if self.w == True:
             self.loc += self.movement * 1
 

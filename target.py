@@ -18,7 +18,7 @@ class target:
 
     def get_target(self, IsLaunchedByPlayer):
         try:
-            answer = [x for x in request()._items if base in type(x).__bases__ and IsLaunchedByPlayer!=x.isplayer]
+            answer = [x for x in request()._items if base in type(x).__bases__ and IsLaunchedByPlayer!=x.isplayer] + [request().get_item('empty')]
             if not answer:
                 return request().get_item('empty')
             else:
