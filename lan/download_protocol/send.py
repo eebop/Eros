@@ -3,7 +3,7 @@ import pickle
 import os
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind(('', int(input('and channel...'))))
+s.bind(('', int(input('enter channel: '))))
 s.listen(1)
 
 
