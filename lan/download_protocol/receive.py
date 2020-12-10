@@ -3,7 +3,7 @@ import pickle
 import os
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((input('enter address to recive from:\n'), int(input('and channel...'))))
+s.connect((input('enter address to recive from: '), int(input('and channel: '))))
 
 
 def recive(socket):
