@@ -2,19 +2,20 @@ import socket
 import pickle
 import os
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((input('enter address to recive from: '), int(input('and channel: '))))
+class recive:
+    def __init__(self, address, channel):
+        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s.connect((address, channel))
 
 
-def recive(socket):
-    num_bytes = ord(socket.recv(1))
-    data = []
-    for _ in range(num_bytes):
-        data.append(socket.recv(1))
-    value = b''.join(data)
-    return pickle.loads(value)
+    def recive(self):
+        num_bytes = ord(self.s.recv(1))
+        data = []
+        for _ in range(num_bytes):
+            data.append(self.s.recv(1))
+        value = b''.join(data)
+        return pickle.loads(value)
 
-def send():
-    pass
 
-print(recive(s))
+r = recive('192.168.1.10', 1025)
+print(r.recive())
