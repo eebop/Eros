@@ -17,15 +17,9 @@ class target:
                         self.number -= 1
 
     def get_target(self, IsLaunchedByPlayer):
-        try:
-            answer = [x for x in request()._items if base in type(x).__bases__ and IsLaunchedByPlayer!=x.isplayer] + [request().get_item('empty')]
-            if not answer:
-                return request().get_item('empty')
-            else:
-                self.number = self.number % len(answer)
-                return answer[self.number]
-        except IndexError:
-            return request().get_item('empty')
+        answer = [x for x in request()._items if base in type(x).__bases__ and IsLaunchedByPlayer!=x.isplayer] + [request().get_item('empty')]
+        self.number = self.number % len(answer)
+        return answer[self.number]
 
     def enabled(self):
         return True
