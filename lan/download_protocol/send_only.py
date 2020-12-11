@@ -5,10 +5,10 @@ import os
 
 class send:
     def __init__(self, channel):
-        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.s.bind(('', channel))
-        self.s.listen(1)
-        self.clientsocket, self.other_address = self.s.accept()
+        self.sender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sender.bind(('', channel))
+        self.sender.listen(1)
+        self.clientsocket, (self.other_address, self.other_address_bytecode) = self.sender.accept()
 
 
 
