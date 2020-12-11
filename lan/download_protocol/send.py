@@ -8,7 +8,7 @@ class send:
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.bind(('', channel))
         self.s.listen(1)
-        self.clientsocket, address = self.s.accept()
+        self.clientsocket, self.other_address = self.s.accept()
 
 
 
@@ -19,6 +19,6 @@ class send:
         self.clientsocket.send(data)
 
 
-
-s = send(1025)
-s.send((46, 93, (2.01, True), print))
+if __name__ == '__main__':
+    s = send(1025)
+    s.send((46, 93, (2.01, True), print))
