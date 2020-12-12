@@ -7,6 +7,7 @@ from move import move
 
 class player(base, move):
     def __init__(self, isplayer, location=None):
+        self.respond_data = (2, 20, 100)
         self.image = pygame.image.load('/Users/kieran/Documents/python_projects/Eros/images/poco3.png')
         self.data = '''0x4b (standerd version)
 crew: %s
