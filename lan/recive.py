@@ -5,7 +5,7 @@ can send too
 from download_protocol import recive_only, send_only
 
 class recive(recive_only, send_only):
-    def __init__(self, address, channel):
+    def __init__(self, address, channel=10998):
         recive_only.__init__(self, address, channel)
         send_only.__init__(self, channel+1)
 
