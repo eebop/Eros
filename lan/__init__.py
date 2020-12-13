@@ -5,6 +5,7 @@ import lan.send
 import lan.recive
 import random
 import socket
+import norm_keys_wrapper
 
 
 writer = screen_data.screen_data(90)
