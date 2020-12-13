@@ -14,20 +14,20 @@ writer2 = screen_data.screen_data(45)
 
 def display(screen, words, level, writer=writer):
     level *= 200
-    if pygame.vernum >= pygame.version.PygameVersion(2, 0, 0):
-        if int(pygame.ver[pygame.ver.find('dev')+3:]) >= 7:
-            pygame.draw.rect(screen, (255, 255, 255), [100, level+20, 600, 100], width=5, border_radius=10)
-        else:
-            pygame.draw.rect(screen, (255, 255, 255), [100, level+20, 600, 100])
-    else:
-        pygame.draw.rect(screen, (255, 255, 255), [100, level+20, 600, 100])
+    try:
+        pygame.draw.rect(screen, (255, 255, 255), [100, level+20, 600, 100], width=5, border_radius=10)
+    except TypeError:
+        pygame.draw.rect(screen, (255, 255, 255), [100, level+20, 600, 100], 5)
 
     writer.print_words(screen, (255, 255, 255), words, (110, level+17))
 
 
 def get_connection(screen):
     screen.fill((0, 0, 0))
-    address = socket.gethostbyname(socket.gethostname())
+    address = [l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2]
+    if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)),
+    s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET,
+    socket.SOCK_DGRAM)]][0][1]]) if l][0][0]
     port = random.randrange(1024, 65535)
     display(screen, 'waiting for player', 0, writer2)
     display(screen, 'your address:\n' + str(address), 1, writer2)
