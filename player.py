@@ -3,9 +3,9 @@ import pygame
 import numpy as np
 import math
 from lan import move_as_computer
-from move import move
+from norm_keys_wrapper import norm_keys_wrapper
 
-class player(base, move):
+class player(base, norm_keys_wrapper):
     def __init__(self, isplayer, location=None):
         self.respond_data = (2, 20, 100)
         self.image = pygame.image.load('/Users/kieran/Documents/python_projects/Eros/images/poco3.png')
@@ -25,9 +25,8 @@ excess heat: %s (%s%% of normal)'''
         self.a = False
         self.d = False
         self.f = False
-        self.running_events = [False, False, False, False]
-        self.events = [pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d]
-        self.movements = [[0, -1], [0, 1], [-1, 0], [1, 0]]
+        norm_keys_wrapper.__init__(self)
+
 
         self.missile_loc = False
         self.target = list(reversed(self.loc + np.array(self.image_now.get_size())/2))
