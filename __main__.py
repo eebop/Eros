@@ -1,5 +1,6 @@
 import framework
 import sys
+
 try:
     import pygame
 except ModuleNotFoundError:
@@ -11,15 +12,17 @@ except ModuleNotFoundError:
 
 pygame.init()
 
-SCARRYMODE = False
-if SCARRYMODE:
-    import scarrycode
-    screen = scarrycode.run()
-else:
-    screen = pygame.display.set_mode((800, 800), pygame.RESIZABLE)
+import lan # must come after pygame.init()
+
+screen = pygame.display.set_mode((800, 800), pygame.RESIZABLE)
 
 pygame.display.set_caption('Eros')
 
-handler = framework.Framework()
+if lan.run(screen):
 
-handler.run(screen)
+    handler = framework.Framework()
+
+    handler.run(screen)
+
+else:
+    lan.run_as_guest(screen)
