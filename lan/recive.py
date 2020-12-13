@@ -2,12 +2,12 @@
 can send too
 '''
 
-from download_protocol import recive_only, send_only
+from lan.download_protocol import recive_only, send_only
 
 class recive(recive_only, send_only):
-    def __init__(self, address, channel=10998):
-        recive_only.__init__(self, address, channel)
-        send_only.__init__(self, channel+1)
+    def __init__(self, address, port=10998):
+        recive_only.__init__(self, address, port)
+        send_only.__init__(self, port+1)
 
 def _test():
     r = recive('127.0.0.1', 1025)

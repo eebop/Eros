@@ -4,10 +4,10 @@ import os
 
 
 class recive:
-    def __init__(self, address, channel):
-        self.address, self.channel = address, channel
+    def __init__(self, address, port):
+        self.address, self.port = address, port
         self.reciver = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.reciver.connect((address, channel))
+        self.reciver.connect((address, port))
 
 
     def recive(self):
