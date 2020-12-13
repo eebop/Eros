@@ -14,7 +14,7 @@ writer2 = screen_data.screen_data(45)
 
 def display(screen, words, level, writer=writer):
     level *= 200
-    pygame.draw.rect(screen, (255, 255, 255), [100, level+20, 600, 100], width=5, border_radius=10)
+    pygame.draw.rect(screen, (255, 255, 255), [100, level+20, 600, 100], 5, 10)
     writer.print_words(screen, (255, 255, 255), words, (110, level+17))
 
 
