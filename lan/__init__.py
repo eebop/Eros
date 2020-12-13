@@ -16,7 +16,7 @@ def display(screen, words, level, writer=writer):
     level *= 200
     if pygame.vernum >= pygame.version.PygameVersion(2, 0, 0):
         if int(pygame.ver[pygame.ver.find('dev')+3:]) >= 7:
-            pygame.draw.rect(screen, (255, 255, 255), [100, level+20, 600, 100], 5, 10)
+            pygame.draw.rect(screen, (255, 255, 255), [100, level+20, 600, 100], width=5, border_radius=10)
         else:
             pygame.draw.rect(screen, (255, 255, 255), [100, level+20, 600, 100])
     else:
