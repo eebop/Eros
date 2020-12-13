@@ -14,13 +14,10 @@ writer2 = screen_data.screen_data(45)
 
 def display(screen, words, level, writer=writer):
     level *= 200
-    if pygame.vernum >= pygame.version.PygameVersion(2, 0, 0):
-        if int(pygame.ver[pygame.ver.find('dev')+3:]) >= 7:
-            pygame.draw.rect(screen, (255, 255, 255), [100, level+20, 600, 100], width=5, border_radius=10)
-        else:
-            pygame.draw.rect(screen, (255, 255, 255), [100, level+20, 600, 100])
-    else:
-        pygame.draw.rect(screen, (255, 255, 255), [100, level+20, 600, 100])
+    try:
+        pygame.draw.rect(screen, (255, 255, 255), [100, level+20, 600, 100], width=5, border_radius=10)
+    except TypeError:
+        pygame.draw.rect(screen, (255, 255, 255), [100, level + 20, 600, 100], 5)
 
     writer.print_words(screen, (255, 255, 255), words, (110, level+17))
 
