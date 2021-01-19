@@ -2,6 +2,7 @@ import importlib
 import pygame
 import time
 import sys
+import lan
 
 class Framework:
     def __init__(self):
@@ -21,20 +22,25 @@ class Framework:
 
     def run(self, screen):
         t = time.time()
-        should_check = 0
+        self.should_check = 0
         while True:
-            while not time.time() - .05 >= t:
-                pass
-            t = time.time()
-            should_check += 1
-            if should_check == 4:
-                e = pygame.event.get()
-                sys.exit() if any([event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_c and event.mod == pygame.KMOD_LCTRL) for event in e]) else None
-                should_check = 0
-            else:
-                e = None
+            t, e = self.run_normal(t)
             move = self.move_extention.run(screen, e)
             screen.blits([(image, move+location) for image, location in [x.update(t, e) for x in self._items]])
             [x.run(screen, e) for x in self.extentions.values() if x.enabled()]
             pygame.display.flip()
+            lan.double_socket.send(screen)
             screen.fill((32, 32, 32))
+
+    def run_normal(self, t):
+        while not time.time() - .05 >= t:
+            pass
+        t = time.time()
+        self.should_check += 1
+        if self.should_check == 4:
+            e = pygame.event.get()
+            sys.exit() if any([event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_c and event.mod == pygame.KMOD_LCTRL) for event in e]) else None
+            self.should_check = 0
+        else:
+            e = None
+        return t, e

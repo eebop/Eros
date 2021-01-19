@@ -5,11 +5,13 @@ import lan.send
 import lan.recive
 import random
 import socket
-import norm_keys_wrapper
 
 
 writer = screen_data.screen_data(90)
 writer2 = screen_data.screen_data(45)
+
+
+global double_socket
 
 
 def display(screen, words, level, writer=writer):
@@ -124,7 +126,7 @@ def get_adr_and_port(screen):
 
 def fail(screen):
     screen.fill((0, 0, 0))
-    display(screen, '   that is invalid', 0, writer2)
+    display(screen, '   That is invalid', 0, writer2)
     pygame.display.flip()
     time.sleep(1.5)
     return get_adr_and_port(screen)
@@ -162,6 +164,9 @@ def run_as_guest(screen):
             valid_address = True
         except ConnectionRefusedError:
             screen.fill((0, 0, 0))
-            display(screen, 'that is invalid (CRE)', 0, writer2)
+            display(screen, 'That is invalid (CRE)', 0, writer2)
             pygame.display.flip()
             time.sleep(1.5)
+    import lan.guest # put here to stop circular imports
+    g = lan.guest.guest(double_socket, screen)
+    g.run()

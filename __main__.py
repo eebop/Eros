@@ -1,4 +1,3 @@
-import framework
 import sys
 
 try:
@@ -10,7 +9,15 @@ try:
 except ModuleNotFoundError:
     sys.exit('Needs module numpy to work properly. To install, run `pip install pygame`')
 
+print('here')
+
 pygame.init()
+
+print('here')
+
+import framework
+
+print('here')
 
 import lan # must come after pygame.init()
 
