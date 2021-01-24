@@ -1,6 +1,7 @@
 import socket
 #import pickle
 import zlib
+import pygame
 
 class recive:
     def __init__(self, address, port):

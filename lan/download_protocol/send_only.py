@@ -1,5 +1,5 @@
 import socket
-import pickle
+import pygame
 from lan.download_protocol import get_local_address
 import zlib
 
