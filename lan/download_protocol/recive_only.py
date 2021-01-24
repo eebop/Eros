@@ -16,7 +16,7 @@ class recive:
         for _ in range(num_bytes):
             data.append(self.reciver.recv(1))
         value = ''.join(data)
-        return pygame.image.fromstring(zlib.decompress(value))
+        return pygame.image.fromstring(zlib.decompress(value), (800, 800), 'RGB')
 
 
 if __name__ == '__main__':
