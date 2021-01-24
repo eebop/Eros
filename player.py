@@ -4,11 +4,12 @@ import numpy as np
 import math
 from lan import move_as_computer
 from norm_keys_wrapper import norm_keys_wrapper
+import os
 
 class player(base, norm_keys_wrapper):
     def __init__(self, isplayer, location=None):
         self.respond_data = (2, 20, 100)
-        self.image = pygame.image.load('/Users/kieran/Documents/python_projects/Eros/images/poco3.png')
+        self.image = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'poco3.png'))
         self.data = '''0x4b (standerd version)
 crew: %s
 excess heat: %s (%s%% of normal)'''
