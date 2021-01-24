@@ -1,3 +1,4 @@
+import socket
 def get_local_address():
     address = [l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2]
     if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)),
