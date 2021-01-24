@@ -6,9 +6,7 @@ from lan.download_protocol import recive_only, send_only
 
 class recive(recive_only, send_only):
     def __init__(self, address, port=10998):
-        print('here, address is', address, 'port is', port)
         recive_only.__init__(self, address, port)
-        print('got here')
         send_only.__init__(self, port+1)
 
 def _test():

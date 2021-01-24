@@ -150,9 +150,7 @@ def run_as_guest(screen):
                         address, port = fail(screen)
                 else:
                     address, port = fail(screen)
-        print('okay')
         try:
-            print(repr(address), repr(port))
             double_socket = lan.recive.recive(address, port)
             valid_address = True
         except ConnectionRefusedError:
