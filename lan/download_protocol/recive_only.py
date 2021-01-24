@@ -14,7 +14,7 @@ class recive:
         num_bytes = ord(self.reciver.recv(4).decode('utf-8'))
         data = []
         for _ in range(num_bytes):
-            data.append(self.reciver.recv(1))
+            data.append(self.reciver.recv(1).decode('utf-8'))
         value = ''.join(data)
         return pygame.image.fromstring(zlib.decompress(value), (800, 800), 'RGB')
 
