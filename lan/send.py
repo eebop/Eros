@@ -9,7 +9,7 @@ class send(send_only, recive_only):
     def __init__(self, port=10998):
         print('here, port is', port)
         send_only.__init__(self, port)
-        time.sleep(.1) # buffer time so recive() isn't called before send() (in send module)
+        time.sleep(1) # buffer time so recive() isn't called before send() (in send module)
         recive_only.__init__(self, self.other_address, port+1)
 
 def _test():
