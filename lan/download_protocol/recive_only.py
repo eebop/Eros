@@ -20,5 +20,5 @@ class recive:
 
 
 if __name__ == '__main__':
-    r = recive('192.168.1.10', 1025)
+    r = recive('192.168.1.6', 1025)
     print(r.recive())

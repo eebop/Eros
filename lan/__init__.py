@@ -5,6 +5,8 @@ import lan.send
 import lan.recive
 import random
 import socket
+import lan.guest # put here to stop circular imports
+from lan.download_protocol import get_local_address
 
 
 writer = screen_data.screen_data(90)
@@ -26,10 +28,7 @@ def display(screen, words, level, writer=writer):
 
 def get_connection(screen):
     screen.fill((0, 0, 0))
-    address = [l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2]
-    if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)),
-    s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET,
-    socket.SOCK_DGRAM)]][0][1]]) if l][0][0]
+    address = get_local_address()
     port = random.randrange(1024, 65535)
     display(screen, 'waiting for player', 0, writer2)
     display(screen, 'your address:\n' + str(address), 1, writer2)
@@ -160,6 +159,7 @@ def run_as_guest(screen):
                     address, port = fail(screen)
         print('okay')
         try:
+            print(repr(address), repr(port))
             double_socket = lan.recive.recive(address, port)
             valid_address = True
         except ConnectionRefusedError:
@@ -167,6 +167,5 @@ def run_as_guest(screen):
             display(screen, 'That is invalid (CRE)', 0, writer2)
             pygame.display.flip()
             time.sleep(1.5)
-    import lan.guest # put here to stop circular imports
     g = lan.guest.guest(double_socket, screen)
     g.run()
