@@ -1,7 +1,6 @@
 import socket
-import pickle
-import os
-
+#import pickle
+import zlib
 
 class recive:
     def __init__(self, address, port):
@@ -10,13 +9,13 @@ class recive:
         self.reciver.connect((address, port))
 
 
-    def recive(self):
-        num_bytes = ord(self.reciver.recv(1))
+    def recive(self, issurface=True):
+        num_bytes = ord(self.reciver.recv(4).decode('utf-8'))
         data = []
         for _ in range(num_bytes):
             data.append(self.reciver.recv(1))
-        value = b''.join(data)
-        return pickle.loads(value)
+        value = ''.join(data)
+        return zlib.decompress(value)
 
 
 if __name__ == '__main__':
