@@ -7,17 +7,13 @@ except ModuleNotFoundError:
 try:
     import numpy
 except ModuleNotFoundError:
-    sys.exit('Needs module numpy to work properly. To install, run `pip install pygame`')
+    sys.exit('Needs module numpy to work properly. To install, run `pip install numpy`')
 
-print('here')
 
 pygame.init()
 
-print('here')
-
 import framework
 
-print('here')
 
 import lan # must come after pygame.init()
 
