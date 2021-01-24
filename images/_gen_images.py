@@ -14,6 +14,6 @@ screen.blit(spacecraft, (0, 0))
 
 pygame.display.flip()
 
-pygame.image.save(spacecraft, '/Users/kieran/Documents/python_projects/Eros/images/player.png')
+pygame.image.save(spacecraft, pygame.image.load(os.path.join(os.path.dirname(__file__), 'player.png')
 
 time.sleep(100)
