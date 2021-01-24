@@ -18,6 +18,7 @@ class send:
         #self.clientsocket.send(bytes(chr(len(data)), "utf-8"))
         #self.clientsocket.send(data)
         data = zlib.compress(pygame.image.tostring(obj, 'RGB'))
+        print(len(data), chr(len(data)), len(chr(len(data))))
         self.clientsocket.send(bytes(chr(len(data)), 'utf-8'))
         self.clientsocket.send(data)
 

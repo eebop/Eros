@@ -74,7 +74,7 @@ def move_as_computer(events):
 
 def get_adr_and_port(screen):
     screen.fill((0, 0, 0))
-    address = '' # 1
+    address = '192.168' # 1
     port = '' # 2
     selected = None
     enabled_keys = [pygame.K_PERIOD, pygame.K_0, pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4,
