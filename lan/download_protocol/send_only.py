@@ -1,7 +1,7 @@
 import socket
 import pickle
-import os
 from lan.download_protocol import get_local_address
+import zlib
 
 
 class send:
@@ -15,12 +15,14 @@ class send:
 
 
     def send(self, obj):
-        data = pickle.dumps(obj)
-        self.clientsocket.send(bytes(chr(len(data)), "utf-8"))
+        #self.clientsocket.send(bytes(chr(len(data)), "utf-8"))
+        #self.clientsocket.send(data)
+        data = zlib.compress(pygame.image.tostring(obj))
+        self.clientsocket.send(bytes(chr(len(data), 'utf-8')))
         self.clientsocket.send(data)
 
 
-if __name__ == '__main__':
-    print('here')
-    s = send(1025)
-    s.send((46, 93, (2.01, True), print))
+# if __name__ == '__main__':
+#     print('here')
+#     s = send(1025)
+#     s.send((46, 93, (2.01, True), print))
