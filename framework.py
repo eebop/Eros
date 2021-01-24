@@ -20,7 +20,8 @@ class Framework:
             importlib.import_module(name)
         return getattr(sys.modules[name], name)(*data, **kwdata)
 
-    def run(self, screen):
+    def run(self, screen, double_socket):
+        self.double_socket = double_socket
         t = time.time()
         self.should_check = 0
         while True:
@@ -29,7 +30,7 @@ class Framework:
             screen.blits([(image, move+location) for image, location in [x.update(t, e) for x in self._items]])
             [x.run(screen, e) for x in self.extentions.values() if x.enabled()]
             pygame.display.flip()
-            lan.double_socket.send(screen)
+            self.double_socket.send(screen)
             screen.fill((32, 32, 32))
 
     def run_normal(self, t):

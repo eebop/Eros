@@ -13,8 +13,6 @@ writer = screen_data.screen_data(90)
 writer2 = screen_data.screen_data(45)
 
 
-global double_socket
-
 
 def display(screen, words, level, writer=writer):
     level *= 200
@@ -35,6 +33,7 @@ def get_connection(screen):
     display(screen, 'your port:\n' + str(port), 2, writer2)
     pygame.display.flip()
     double_socket = lan.send.send(port)
+    return double_socket
 
 
 def check_if_in(rect, location):
@@ -65,8 +64,7 @@ def run(screen):
                 has_clicked = 2
 
     if has_clicked == 1:
-        get_connection(screen)
-        return True
+        return get_connection(screen)
     return False
 
 
@@ -143,11 +141,6 @@ def run_as_guest(screen):
             else:
                 port = int(port)
                 if 1024 <= port <= 65534:
-                    '''if you change these lines (134-145) in a certain way, you will
-                    be able to send over the internet. There is several other steps to do this
-                    involving setting up your router. I strongly recomened against this,
-                    because hackers will be able to edit the (insecure) pickle to execute
-                    arbitrary code on you machine'''
                     if 11 <= len(address) <= 15:
                         if address[:8] == '192.168.':
                             is_okay = True
