@@ -13,7 +13,6 @@ def _test():
     r = recive('192.168.1.6', 1025)
     r.send('hi')
     print(r.recive())
- and x.mod == 0
 
 if __name__ == '__main__':
     _test()
