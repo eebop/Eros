@@ -1,5 +1,6 @@
 from player import player
 from base import request
+import numpy as np
 class opponent(player):
     def __init__(self):
         player.__init__(self, False, (200, 400), 180)
