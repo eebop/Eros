@@ -6,7 +6,7 @@ from norm_keys_wrapper import norm_keys_wrapper
 import os
 
 class player(base, norm_keys_wrapper):
-    def __init__(self, isplayer=True, location=(600,400), degrees=90):
+    def __init__(self, isplayer=True, location=(600,400), degrees=180):
         self.image = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'poco3.png'))
         self.image_now = self.image
         if not location:

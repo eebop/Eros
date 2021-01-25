@@ -3,7 +3,7 @@ from base import request
 import numpy as np
 class opponent(player):
     def __init__(self):
-        player.__init__(self, False, (200, 400), 180)
+        player.__init__(self, False, (200, 400), 0)
 
     def update(self, time, data):
         self.target = self.loc + np.array(self.image_now.get_size())/2
