@@ -42,7 +42,6 @@ def check_if_in(rect, location):
     w2 = rect[0] + rect[2]
     h2 = rect[1] + rect[3]
     if w1 <= location[0] <= w2 and h1 <= location[1] <= h2:
-        print('here', rect, location)
         return True
 
 
@@ -93,7 +92,6 @@ def get_adr_and_port(screen):
         key_events = [x for x in events if x.type == pygame.KEYDOWN and x.key in enabled_keys]
         all_out = False
         for m_event in mouse_events:
-            print('m_event')
             if check_if_in([100, 420, 600, 100], m_event.pos):
                 return address, port
 
@@ -111,12 +109,9 @@ def get_adr_and_port(screen):
 
         for key in key_events:
             act_key = key_reference[enabled_keys.index(key.key)]
-            print(act_key)
             if selected == 1:
-                print('here')
                 if act_key != '\b':
                     address += act_key
-                    print('here, address is', address)
                 else:
                     address = address[:-1]
             if selected == 2:
