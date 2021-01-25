@@ -11,11 +11,12 @@ class recive:
 
 
     def recive(self, issurface=True):
-        num_bytes = ord(self.reciver.recv(4).decode('utf-8'))
+        num_num_bytes = ord(self.reciver.recv(1))
+        num_bytes = ord(self.reciver.recv(num_num_bytes).decode('utf-8'))
         data = []
         for _ in range(num_bytes):
-            data.append(self.reciver.recv(1).decode('utf-8'))
-        value = ''.join(data)
+            data.append(self.reciver.recv(1))
+        value = b''.join(data)
         return pygame.image.fromstring(zlib.decompress(value), (800, 800), 'RGB')
 
 

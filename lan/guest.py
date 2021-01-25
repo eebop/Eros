@@ -11,5 +11,5 @@ class guest:
 
     def run(self):
         while True:
-            self.screen.blit(self.double_socket.recive())
+            self.screen.blit(self.double_socket.recive(), (0, 0))
             pygame.display.flip()
