@@ -11,7 +11,7 @@ class send(send_only, recive_only):
         done = False
         while not done:
             try:
-                recive_only.__init__(self, self.other_address, port+1, False)
+                recive_only.__init__(self, self.other_address, port+1, True)
                 done = True
             except ConnectionRefusedError:
                 print('Connection refused... Trying again')
