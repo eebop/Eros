@@ -6,14 +6,14 @@ from lan.download_protocol import recive_only, send_only
 
 class recive(recive_only, send_only):
     def __init__(self, address, port=10998):
-        recive_only.__init__(self, address, port, True)
-        send_only.__init__(self, port+1, True)
+        recive_only.__init__(self, address, port)
+        send_only.__init__(self, port+1)
 
 def _test():
     r = recive('192.168.1.6', 1025)
     r.send('hi')
     print(r.recive())
-
+ and x.mod == 0
 
 if __name__ == '__main__':
     _test()
