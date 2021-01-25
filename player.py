@@ -7,7 +7,6 @@ import os
 
 class player(base, norm_keys_wrapper):
     def __init__(self, isplayer=True, location=(600,400), degrees=90):
-        self.respond_data = (2, 20, 100)
         self.image = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'poco3.png'))
         self.image_now = self.image
         if not location:
