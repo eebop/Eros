@@ -21,6 +21,8 @@ class player(base, norm_keys_wrapper):
         self.a = False
         self.d = False
         self.f = False
+        data = ''
+        respond_data = ''
         norm_keys_wrapper.__init__(self)
 
 
