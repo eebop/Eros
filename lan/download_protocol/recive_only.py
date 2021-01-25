@@ -1,5 +1,5 @@
 import socket
-#import pickle
+import pickle
 import zlib
 import pygame
 
