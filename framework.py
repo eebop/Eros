@@ -13,7 +13,7 @@ class Framework:
         self.setup_rockets()
 
     def setup_rockets(self):
-        self._items = [self.get_item("player", True), self.get_item("player", False, [100, 0])]
+        self._items = [self.get_item("player", True), self.get_item("opponent", False, [100, 0])]
 
     def get_item(self, name, *data, **kwdata):
         if not name in sys.modules:
