@@ -13,3 +13,4 @@ class guest:
         while True:
             self.screen.blit(self.double_socket.recive(), (0, 0))
             pygame.display.flip()
+            self.double_socket.send(pygame.events.get())
