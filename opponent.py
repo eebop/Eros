@@ -7,5 +7,5 @@ class opponent(player):
 
     def update(self, time, data):
         self.target = self.loc + np.array(self.image_now.get_size())/2
-        self.move([])#request().double_socket.recive(False))
+        self.move(request().double_socket.recive(False))
         return self.image_now, list(self.loc)
