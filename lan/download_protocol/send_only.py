@@ -6,18 +6,17 @@ import pickle
 
 
 class send:
-    def __init__(self, port, issurface):
+    def __init__(self, port):
         self.sender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sender.bind((get_local_address(), port))
         self.sender.listen(1)
         self.clientsocket, (self.other_address, self.other_address_bytecode) = self.sender.accept()
-        self.issurface = issurface
 
 
 
 
     def send(self, obj):
-        if self.issurface:
+        if type(obj) == pygame.Surface:
             data = zlib.compress(pygame.image.tostring(obj, 'RGB'))
         else:
             data = pickle.dumps(obj)
