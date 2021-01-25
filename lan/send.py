@@ -7,11 +7,11 @@ import time
 
 class send(send_only, recive_only):
     def __init__(self, port=10998):
-        send_only.__init__(self, port)
+        send_only.__init__(self, port, True)
         done = False
         while not done:
             try:
-                recive_only.__init__(self, self.other_address, port+1)
+                recive_only.__init__(self, self.other_address, port+1, False)
                 done = True
             except ConnectionRefusedError:
                 print('Connection refused... Trying again')

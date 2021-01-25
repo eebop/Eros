@@ -4,10 +4,11 @@ import zlib
 import pygame
 
 class recive:
-    def __init__(self, address, port):
+    def __init__(self, address, port, issurface):
         self.address, self.port = address, port
         self.reciver = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.reciver.connect((address, port))
+        self.issurface = issurface
 
 
     def recive(self, issurface=True):
@@ -18,8 +19,3 @@ class recive:
             data.append(self.reciver.recv(1))
         value = b''.join(data)
         return pygame.image.fromstring(zlib.decompress(value), (800, 800), 'RGB')
-
-
-if __name__ == '__main__':
-    r = recive('192.168.1.6', 1025)
-    print(r.recive())

@@ -89,7 +89,7 @@ def get_adr_and_port(screen):
         pygame.display.flip()
         events = pygame.event.get()
         mouse_events = [x for x in events if x.type == pygame.MOUSEBUTTONDOWN and x.button == 1]
-        key_events = [x for x in events if x.type == pygame.KEYDOWN and x.key in enabled_keys and x.mod == 0]
+        key_events = [x for x in events if x.type == pygame.KEYDOWN and x.key in enabled_keys]
         all_out = False
         for m_event in mouse_events:
             if check_if_in([100, 420, 600, 100], m_event.pos):
