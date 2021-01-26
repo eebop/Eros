@@ -10,7 +10,7 @@ class recive:
         self.reciver.connect((address, port))
 
 
-    def recive(self, issurface=True):
+    def recive(self, issurface=True, should_do_fromstring=True):
         num_num_bytes = ord(self.reciver.recv(1))
         num_bytes = ord(self.reciver.recv(num_num_bytes).decode('utf-8'))
         data = []
@@ -18,6 +18,10 @@ class recive:
             data.append(self.reciver.recv(1))
         value = b''.join(data)
         if issurface:
-            return pygame.image.fromstring(zlib.decompress(value), (800, 800), 'RGB')
+            answer = zlib.decompress(value)
+            if should_do_fromstring:
+                return pygame.image.fromstring(answer, (800, 800), 'RGB'))
+            else:
+                return answer
         else:
             return pickle.loads(value)
