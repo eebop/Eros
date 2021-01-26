@@ -22,6 +22,7 @@ class recive:
             if should_do_fromstring:
                 return pygame.image.fromstring(answer, (800, 800), 'RGB')
             else:
+                print('here')
                 return answer
         else:
             return pickle.loads(value)
