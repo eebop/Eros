@@ -12,7 +12,7 @@ class guest:
         self.events = []
 
     def run(self):
-        send_events = Thread(target=self.send_events)
+        send_events = Thread(target=self.send_events, daemon=True)
         send_events.start()
         while True:
             self.screen.blit(pygame.image.fromstring(self.double_socket.recive(), (800, 800), 'RGB'), (0, 0))
@@ -23,6 +23,7 @@ class guest:
     def send_events(self):
         while True:
             self.double_socket.send(self._process_events(self.events))
+            time.sleep(.5)
 
     def _process_events(self, events):
         events = [self.eventtoeventwrapper(e) for e in events if e.type in (pygame.KEYDOWN, pygame.KEYUP)]
