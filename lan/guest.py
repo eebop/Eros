@@ -10,9 +10,6 @@ class guest:
         self.double_socket = double_socket
         self.screen = screen
 
-    def draw(self):
-        while True:
-
     def run(self):
         send_events = Thread(target=self.send_events)
         send_events.start()
