@@ -15,7 +15,7 @@ class guest:
         send_events.start()
         while True:
             self.double_socket.send(self._process_events(self.events))
-            if select([self.double_socket.reciver], [], [], .1):
+            if select([self.double_socket.reciver], [], [], .1)[0]:
                 self.screen.blit(self.double_socket.recive(), (0, 0))
             pygame.display.flip()
             self.events = pygame.event.get()
