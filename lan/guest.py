@@ -23,7 +23,6 @@ class guest:
     def send_events(self):
         while True:
             self.double_socket.send(self._process_events(self.events))
-            time.sleep(1)
 
     def _process_events(self, events):
         events = [self.eventtoeventwrapper(e) for e in events if e.type in (pygame.KEYDOWN, pygame.KEYUP)]
