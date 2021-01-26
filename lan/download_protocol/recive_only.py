@@ -20,7 +20,7 @@ class recive:
         if issurface:
             answer = zlib.decompress(value)
             if should_do_fromstring:
-                return pygame.image.fromstring(answer, (800, 800), 'RGB'))
+                return pygame.image.fromstring(answer, (800, 800), 'RGB')
             else:
                 return answer
         else:
