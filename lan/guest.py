@@ -9,10 +9,11 @@ class guest:
     def __init__(self, double_socket, screen):
         self.double_socket = double_socket
         self.screen = screen
+        self.image = pygame.Surface(800, 800)
 
     def draw(self):
         while True:
-            self.screen.blit(self.double_socket.recive(), (0, 0))
+            self.image = self.double_socket.recive()
 
     def run(self):
         draw = Thread(target=self.draw)
@@ -20,6 +21,7 @@ class guest:
         draw.start()
         send_events.start()
         while True:
+            self.screen.blit(self.image, (0, 0))
             pygame.display.flip()
 
 
