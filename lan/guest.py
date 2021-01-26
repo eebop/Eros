@@ -22,7 +22,7 @@ class guest:
     def _process_events(self):
         events = pygame.event.get()
         sys.exit() if any([event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_c and event.mod == pygame.KMOD_LCTRL) for event in e]) else None
-        events = [self.eventtoeventwrapper(e) for e in  if e.type in (pygame.KEYDOWN, pygame.KEYUP)]
+        events = [self.eventtoeventwrapper(e) for e in events if e.type in (pygame.KEYDOWN, pygame.KEYUP)]
         return events
 
     def eventtoeventwrapper(self, event):
