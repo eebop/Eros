@@ -15,7 +15,7 @@ class guest:
         send_events = Thread(target=self.send_events, daemon=True)
         send_events.start()
         while True:
-            self.screen.blit(pygame.image.fromstring(self.double_socket.recive(), (800, 800), 'RGB'), (0, 0))
+            self.screen.blit(self.double_socket.recive(), (0, 0))
             pygame.display.flip()
             self.events = pygame.event.get()
 
