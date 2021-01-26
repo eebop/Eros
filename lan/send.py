@@ -16,11 +16,11 @@ class send(send_only, recive_only):
                 recive_only.__init__(self, self.other_address, port+1)
                 done = True
             except ConnectionRefusedError:
-                print('Connection refused... Trying again (try number %s)'%count)
+                print('Connection refused... Trying again (try number %s/20)'%count)
                 time.sleep(.1)
                 count += 1
         if count == 20:
-            print('internal error: secondary conection failed too many times')
+            print('Internal Error: secondary conection failed too many times')
             sys.exit()
 
 def _test():
