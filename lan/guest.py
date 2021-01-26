@@ -6,11 +6,10 @@ class guest:
     def __init__(self, double_socket, screen):
         self.double_socket = double_socket
         self.screen = screen
-        self.events = []
 
     def run(self):
         while True:
-            e = self._process_events(self.events)
+            e = self._process_events()
             if e:
                 self.double_socket.send(e)
             if select([self.double_socket.reciver], [], [], 0)[0]:
