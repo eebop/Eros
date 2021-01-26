@@ -12,7 +12,6 @@ class guest:
         self.events = []
 
     def run(self):
-        send_events.start()
         while True:
             self.double_socket.send(self._process_events(self.events))
             if select([self.double_socket.reciver], [], [], .1)[0]:
