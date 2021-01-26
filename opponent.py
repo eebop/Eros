@@ -10,6 +10,6 @@ class opponent(player):
     def update(self, time, data):
         self.target = self.loc + np.array(self.image_now.get_size())/2
         double_socket = request().double_socket
-        if select([double_socket.reciver], [], [], .01)[0]:
+        if select([double_socket.reciver], [], [], 0)[0]:
             self.move(double_socket.recive(False))
         return self.image_now, list(self.loc)
