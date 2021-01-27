@@ -9,7 +9,7 @@ class guest(norm_keys_wrapper):
         self.screen = screen
         self.location = None
 
-    def run(self):
+    def loop(self):
         while True:
             e = self._process_events()
             if e:
@@ -22,7 +22,7 @@ class guest(norm_keys_wrapper):
     def _process_events(self):
         events = pygame.event.get()
         sys.exit() if any([event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_c and event.mod == pygame.KMOD_LCTRL) for event in events]) else None
-        self.run(events)
+        self.run(self.screen, events)
         return self.get_formatted()
 
     def get_formatted(self):

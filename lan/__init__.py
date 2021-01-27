@@ -159,4 +159,4 @@ def run_as_guest(screen):
             pygame.display.flip()
             time.sleep(1.5)
     g = lan.guest.guest(double_socket, screen)
-    g.run()
+    g.loop()
