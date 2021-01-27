@@ -31,6 +31,7 @@ class guest(norm_keys_wrapper):
         for loc, is_being_pressed in enumerate(self.running_events):
             if is_being_pressed:
                 events.append(EventWrapper(pygame.KEYDOWN, self.events[loc]))
+        return events
 
 
 class EventWrapper:
