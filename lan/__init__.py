@@ -68,8 +68,6 @@ def run(screen):
     return False
 
 
-def move_as_computer(events):
-    return [0, 0, 0, 0]
 
 
 def get_adr_and_port(screen):

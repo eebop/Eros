@@ -3,7 +3,7 @@ import pygame
 from select import select
 from norm_keys_wrapper import norm_keys_wrapper
 
-class guest(norm_keys_wrapper):
+class guest:
     def __init__(self, double_socket, screen):
         self.double_socket = double_socket
         self.screen = screen
@@ -23,14 +23,10 @@ class guest(norm_keys_wrapper):
     def _process_events(self):
         events = pygame.event.get()
         sys.exit() if any([event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_c and event.mod == pygame.KMOD_LCTRL) for event in events]) else None
-        self.run(self.screen, events)
-        return self.get_formatted()
+        return self.get_formatted(events)
 
     def get_formatted(self):
-        events = []
-        for loc, is_being_pressed in enumerate(self.running_events):
-            if is_being_pressed:
-                events.append(EventWrapper(pygame.KEYDOWN, self.events[loc]))
+        events = [EventWrapper(e.type, e.key) for e in events if e.type in (pygame.KEYDOWN, pygame.KEYUP)]
         return events
 
 
