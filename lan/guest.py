@@ -25,7 +25,7 @@ class guest:
         sys.exit() if any([event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_c and event.mod == pygame.KMOD_LCTRL) for event in events]) else None
         return self.get_formatted(events)
 
-    def get_formatted(self):
+    def get_formatted(self, events):
         events = [EventWrapper(e.type, e.key) for e in events if e.type in (pygame.KEYDOWN, pygame.KEYUP)]
         return events
 
