@@ -8,6 +8,7 @@ class guest(norm_keys_wrapper):
         self.double_socket = double_socket
         self.screen = screen
         self.location = None
+        norm_keys_wrapper.__init__(self)
 
     def loop(self):
         while True:
