@@ -1,5 +1,5 @@
 from player import player
-from base import request
+from base import request, base
 import numpy as np
 from select import select
 
