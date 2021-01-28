@@ -21,8 +21,8 @@ class player(base, norm_keys_wrapper):
         self.a = False
         self.d = False
         self.f = False
-        self.data = ''
-        self.respond_data = ''
+        self.data = 'Middleweight\nHeat: %s%% of max'
+        self.respond_data = [10]
         norm_keys_wrapper.__init__(self)
 
 
