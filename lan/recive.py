@@ -10,10 +10,9 @@ class recive(recive_only, send_only):
         send_only.__init__(self, port+1)
 
 def _test():
-    r = recive('127.0.0.1', 1025)
+    r = recive('192.168.1.6', 1025)
     r.send('hi')
     print(r.recive())
-
 
 if __name__ == '__main__':
     _test()

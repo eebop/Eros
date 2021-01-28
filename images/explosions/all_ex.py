@@ -1,10 +1,11 @@
 import pygame
 import time
 import sys
+import os
 
 class all_im:
     def __init__(self, loc, rot):
-        self.images = [pygame.image.load(f'/Users/kieran/Documents/python_projects/Eros/images/explosions/poco{x}.png') for x in range(0, 24)]
+        self.images = [pygame.image.load(os.path.join(os.path.dirname(__file__), 'poco%s.png')%x) for x in range(0, 24)]
         self.number = 9
         self.loc = loc
         self.rot = rot

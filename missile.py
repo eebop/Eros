@@ -1,13 +1,14 @@
 import pygame
 import math
 import sys
+import os
 import numpy as np
 from base import base, request
 
 class missile:
     def __init__(self, loc, islaunchedbyplayer):
         self._loc = loc
-        self.s = pygame.image.load('/Users/kieran/Documents/python_projects/Eros/images/missile.png')
+        self.s = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'missile.png'))
         self.goal = np.array([500, 500], dtype=float)
         self.frozen = False
         self.IsLaunchedByPlayer = islaunchedbyplayer

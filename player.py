@@ -2,29 +2,27 @@ from base import base, request
 import pygame
 import numpy as np
 import math
-from lan import move_as_computer
 from norm_keys_wrapper import norm_keys_wrapper
+import os
 
 class player(base, norm_keys_wrapper):
-    def __init__(self, isplayer, location=None):
-        self.respond_data = (2, 20, 100)
-        self.image = pygame.image.load('/Users/kieran/Documents/python_projects/Eros/images/poco3.png')
-        self.data = '''0x4b (standerd version)
-crew: %s
-excess heat: %s (%s%% of normal)'''
+    def __init__(self, isplayer=True, location=(600,400), degrees=180):
+        self.image = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'poco3.png'))
         self.image_now = self.image
         if not location:
             self.loc = np.array([400, 400], dtype=float)
         else:
             self.loc = np.array(location, dtype=float)
-        self.location = None # To placate move/move
-        self.degrees = 90
+        self.location = None # To placate move.move
+        self.degrees = degrees
         self.isplayer = isplayer
         self.update_movement()
         self.w = False
         self.a = False
         self.d = False
         self.f = False
+        self.data = 'Middleweight\nHeat: %s%% of max'
+        self.respond_data = [10]
         norm_keys_wrapper.__init__(self)
 
 
@@ -40,10 +38,7 @@ excess heat: %s (%s%% of normal)'''
 
     def update(self, time, data):
         self.target = self.loc + np.array(self.image_now.get_size())/2
-        if self.isplayer:
-            self.move(data)
-        else:
-            move_as_computer(self)
+        self.move(data)
         return self.image_now, list(self.loc)
 
     def move(self, data):
