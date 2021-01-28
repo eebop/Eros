@@ -28,7 +28,7 @@ class screen_data:
         screen.blit(self.text.render(word, (0, 0, 0), self.color), (location + (0, lines_down*self.size)))
 
     def get_words(self):
-        return (self.get_target_words(),)
+        return ''#(self.get_target_words(),)
 
     def get_target_words(self):
         target = request().extentions['target'].get_target(True)
