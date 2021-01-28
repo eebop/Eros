@@ -3,11 +3,11 @@ import sys
 try:
     import pygame
 except ModuleNotFoundError:
-    sys.exit('Needs module pygame to work properly. To install, run `pip install pygame`')
+    sys.exit('Needs module pygame to work properly. To install, run `python3 -m pip install pygame`')
 try:
     import numpy
 except ModuleNotFoundError:
-    sys.exit('Needs module numpy to work properly. To install, run `pip install numpy`')
+    sys.exit('Needs module numpy to work properly. To install, run `python3 -m pip install numpy`')
 
 
 pygame.init()
@@ -23,11 +23,14 @@ pygame.display.set_caption('Eros')
 
 double_socket = lan.run(screen)
 
-if double_socket:
+try:
+    if double_socket:
 
-    handler = framework.Framework()
+        handler = framework.Framework()
 
-    handler.run(screen, double_socket)
+        handler.run(screen, double_socket)
 
-else:
-    lan.run_as_guest(screen)
+    else:
+        lan.run_as_guest(screen)
+except (TypeError, BrokenPipeError, ConnectionResetError, KeyboardInterrupt):
+    pass
