@@ -11,7 +11,6 @@ try:
 except ModuleNotFoundError:
     sys.exit('Needs module numpy to work properly. To install, run `python3 -m pip install numpy`')
 
-socket.setdefaulttimeout(2)
 
 pygame.init()
 
