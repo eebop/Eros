@@ -26,3 +26,17 @@ class recive:
                 return answer
         else:
             return pickle.loads(value)
+
+    def _close(self, s):
+        try:
+            s.shutdown(socket.SHUT_RDWR)
+            s.close()
+        except OSError:
+            pass
+
+    def close(self, force=False):
+        self._close(self.reciver)
+        if hasattr(self, 'sender'):
+            self._close(self.sender)
+        if force:
+            self = None

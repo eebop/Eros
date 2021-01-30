@@ -1,5 +1,7 @@
 import sys
-
+import os
+import socket
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 try:
     import pygame
 except ModuleNotFoundError:
@@ -9,6 +11,7 @@ try:
 except ModuleNotFoundError:
     sys.exit('Needs module numpy to work properly. To install, run `python3 -m pip install numpy`')
 
+socket.setdefaulttimeout(2)
 
 pygame.init()
 
@@ -24,13 +27,10 @@ pygame.display.set_caption('Eros')
 double_socket = lan.run(screen)
 
 try:
-    if double_socket:
 
         handler = framework.Framework()
 
         handler.run(screen, double_socket)
 
-    else:
-        lan.run_as_guest(screen)
 except (TypeError, BrokenPipeError, ConnectionResetError, KeyboardInterrupt):
     pass

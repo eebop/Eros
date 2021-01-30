@@ -5,7 +5,9 @@ import lan.send
 import lan.recive
 import random
 import socket
-import lan.guest # put here to stop circular imports
+import sys
+from threading import Thread
+import lan.guest
 from lan.download_protocol import get_local_address
 
 
@@ -24,16 +26,32 @@ def display(screen, words, level, writer=writer):
     writer.print_words(screen, (255, 255, 255), words, (110, level+17))
 
 
+def thread_with_return(port, results):
+    results[0] = lan.send.send(port)
+
 def get_connection(screen):
     screen.fill((0, 0, 0))
     address = get_local_address()
     port = random.randrange(1024, 65535)
-    display(screen, 'waiting for player', 0, writer2)
-    display(screen, 'your address:\n' + str(address), 1, writer2)
-    display(screen, 'your port:\n' + str(port), 2, writer2)
+    display(screen, '   back', 0)
+    display(screen, 'waiting for player', 1, writer2)
+    display(screen, 'your address:\n' + str(address), 2, writer2)
+    display(screen, 'your port:\n' + str(port), 3, writer2)
     pygame.display.flip()
-    double_socket = lan.send.send(port)
-    return double_socket
+    results = [None]
+    thread = Thread(target=thread_with_return, args=(port, results), daemon=True)
+    thread.start()
+    while thread.is_alive():
+        events = pygame.event.get()
+        sys.exit() if any([event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_c and event.mod == pygame.KMOD_LCTRL) for event in events]) else None
+        if any([check_if_in([100, 20, 600, 100], event.pos) for event in events if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1]):
+            fake = lan.recive.recive(get_local_address(), port)
+            thread.join()
+            results[0].close()
+            fake.close()
+            return run(screen)
+
+    return results[0]
 
 
 def check_if_in(rect, location):
@@ -47,25 +65,30 @@ def check_if_in(rect, location):
 
 def run(screen):
     screen.fill((0, 0, 0))
-    display(screen, ' new game', 0)
-    display(screen, ' join game', 1)
+    display(screen, '   quit', 0)
+    display(screen, ' new game', 1)
+    display(screen, ' join game', 2)
     pygame.display.flip()
     has_clicked = False
     while not has_clicked:
         events = pygame.event.get()
+        sys.exit() if any([event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_c and event.mod == pygame.KMOD_LCTRL) for event in events]) else None
         events = [x for x in events if x.type == pygame.MOUSEBUTTONDOWN and x.button == 1]
 
         for event in events:
             loc = [100, 20, 600, 100]
             loc2 = [100, 220, 600, 100]
-            if check_if_in(loc, event.pos):
+            loc3 = [100, 420, 600, 100]
+            if check_if_in(loc2, event.pos):
                 has_clicked = 1
-            elif check_if_in(loc2, event.pos):
+            elif check_if_in(loc3, event.pos):
                 has_clicked = 2
+            elif check_if_in(loc, event.pos):
+                sys.exit()
 
     if has_clicked == 1:
         return get_connection(screen)
-    return False
+    return run_as_guest(screen)
 
 
 
@@ -81,25 +104,29 @@ def get_adr_and_port(screen):
     key_reference = ['.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '\b']
 
     while True:
-        display(screen, 'enter address:\n'+address, 0, writer2)
-        display(screen, 'enter port:\n'+port, 1, writer2)
-        display(screen, '   Done', 2, writer)
+        display(screen, '   back', 0)
+        display(screen, 'enter address:\n'+address, 1, writer2)
+        display(screen, 'enter port:\n'+port, 2, writer2)
+        display(screen, '   done', 3, writer)
         pygame.display.flip()
         events = pygame.event.get()
+        sys.exit() if any([event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_c and event.mod == pygame.KMOD_LCTRL) for event in events]) else None
         mouse_events = [x for x in events if x.type == pygame.MOUSEBUTTONDOWN and x.button == 1]
         key_events = [x for x in events if x.type == pygame.KEYDOWN and x.key in enabled_keys]
         all_out = False
         for m_event in mouse_events:
-            if check_if_in([100, 420, 600, 100], m_event.pos):
+            if check_if_in([100, 620, 600, 100], m_event.pos):
                 return address, port
 
-            if check_if_in([100, 20, 600, 100], m_event.pos):
+            if check_if_in([100, 220, 600, 100], m_event.pos):
                 selected = 1
                 all_out = False
 
-            elif check_if_in([100, 220, 600, 100], m_event.pos):
+            elif check_if_in([100, 420, 600, 100], m_event.pos):
                 selected = 2
                 all_out = False
+            elif check_if_in([100, 20, 600, 100], m_event.pos):
+                return run(screen)
             else:
                 all_out = True
         if all_out:
