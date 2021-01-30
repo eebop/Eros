@@ -21,6 +21,7 @@ def display(screen, words, level, writer=writer):
     except TypeError:
         pygame.draw.rect(screen, (255, 255, 255), [100, level+20, 600, 100], 5)
 
+
     writer.print_words(screen, (255, 255, 255), words, (110, level+17))
 
 
