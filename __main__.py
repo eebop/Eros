@@ -33,3 +33,5 @@ try:
 
 except (TypeError, BrokenPipeError, ConnectionResetError, KeyboardInterrupt):
     pass
+except OSError:
+    print("Sorry, you don't have internet right now.")
