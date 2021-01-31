@@ -12,7 +12,8 @@ class guest:
 
     def loop(self):
         while True:
-            e = self._process_events()
+            events = pygame.event.get()
+            e = self._process_events(events)
             if e:
                 self.double_socket.send(e)
             if select([self.double_socket.reciver], [], [], 0)[0]:
@@ -20,8 +21,7 @@ class guest:
             pygame.display.flip()
 
 
-    def _process_events(self):
-        events = pygame.event.get()
+    def _process_events(self, events):
         sys.exit() if any([event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_c and event.mod == pygame.KMOD_LCTRL) for event in events]) else None
         return self.get_formatted(events)
 
