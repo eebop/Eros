@@ -14,7 +14,9 @@ from lan.download_protocol import get_local_address
 writer = screen_data.screen_data(90)
 writer2 = screen_data.screen_data(45)
 
-
+def resize_surface(double_socket):
+    size = double_socket.recive.recive()
+    pygame.event.post(pygame.Event(pygame.VIDEORESIZE, size, *size))
 
 def display(screen, words, level, writer=writer):
     level *= 200
