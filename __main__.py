@@ -1,9 +1,6 @@
 import sys
 import os
 import socket
-if len(sys.argv) > 1:
-    os.environ['DUBUG'] = sys.argv[1]
-    print('here', 'DEBUG' in os.environ.keys())
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 try:
     import pygame
@@ -42,4 +39,4 @@ except (TypeError, BrokenPipeError, ConnectionResetError, KeyboardInterrupt):
     if 'DEBUG' in os.environ.keys():
         raise
 except OSError:
-    print("Sorry, you don't have internet right now.")
+    sys.exit("Sorry, you don't have internet right now.")

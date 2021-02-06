@@ -48,7 +48,6 @@ def get_connection(screen):
         if any([check_if_in([100, 20, 600, 100], event.pos) for event in events if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1]):
             fake = lan.recive.recive(get_local_address(), port)
             thread.join()
-            print(results)
             results[0].close()
             fake.close()
             del results
