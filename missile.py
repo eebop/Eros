@@ -17,7 +17,7 @@ class missile:
     def update(self, time, data):
         self.get_goal()
         # must return an image to draw and a location to draw at
-        if self.goal == None:
+        if type(self.goal) != np.array:
             self.movement /= 2
             self._loc += self.movement
             return self.s, self._loc
