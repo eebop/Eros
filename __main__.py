@@ -21,12 +21,8 @@ import lan # must come after pygame.init()
 
 screen = pygame.display.set_mode((800, 800), pygame.RESIZABLE)
 
-if not 'DEBUG' in os.environ.keys():
-    pygame.display.set_caption('Eros')
-else:
-    pygame.display.set_caption('Eros (Debug on)')
+pygame.display.set_caption('Eros')
 
-try:
 
 
     double_socket = lan.run(screen)
@@ -36,7 +32,6 @@ try:
     handler.run(screen, double_socket)
 
 except (TypeError, BrokenPipeError, ConnectionResetError, KeyboardInterrupt):
-    if 'DEBUG' in os.environ.keys():
-        raise
+    raise
 except OSError:
     sys.exit("Sorry, you don't have internet right now.")
