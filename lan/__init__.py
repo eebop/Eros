@@ -48,8 +48,11 @@ def get_connection(screen):
         if any([check_if_in([100, 20, 600, 100], event.pos) for event in events if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1]):
             fake = lan.recive.recive(get_local_address(), port)
             thread.join()
+            print(results)
             results[0].close()
             fake.close()
+            del results
+            del fake
             return run(screen)
 
     return results[0]
@@ -81,15 +84,11 @@ def run(screen):
             loc2 = [100, 220, 600, 100]
             loc3 = [100, 420, 600, 100]
             if check_if_in(loc2, event.pos):
-                has_clicked = 1
+                return get_connection(screen)
             elif check_if_in(loc3, event.pos):
-                has_clicked = 2
+                return run_as_guest(screen)
             elif check_if_in(loc, event.pos):
                 sys.exit()
-
-    if has_clicked == 1:
-        return get_connection(screen)
-    return run_as_guest(screen)
 
 
 

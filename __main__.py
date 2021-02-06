@@ -1,6 +1,9 @@
 import sys
 import os
 import socket
+if len(sys.argv) > 1:
+    os.environ['DUBUG'] = sys.argv[1]
+    print('here', 'DEBUG' in os.environ.keys())
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 try:
     import pygame
@@ -21,17 +24,22 @@ import lan # must come after pygame.init()
 
 screen = pygame.display.set_mode((800, 800), pygame.RESIZABLE)
 
-pygame.display.set_caption('Eros')
-
-double_socket = lan.run(screen)
+if not 'DEBUG' in os.environ.keys():
+    pygame.display.set_caption('Eros')
+else:
+    pygame.display.set_caption('Eros (Debug on)')
 
 try:
 
-        handler = framework.Framework()
 
-        handler.run(screen, double_socket)
+    double_socket = lan.run(screen)
+
+    handler = framework.Framework()
+
+    handler.run(screen, double_socket)
 
 except (TypeError, BrokenPipeError, ConnectionResetError, KeyboardInterrupt):
-    pass
+    if 'DEBUG' in os.environ.keys():
+        raise
 except OSError:
     print("Sorry, you don't have internet right now.")

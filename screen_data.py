@@ -1,9 +1,16 @@
 import pygame
 from base import request
 import numpy as np
+FONTS = ['menlo', 'andale mono', 'courier', 'courier new' 'helvetica', 'arial', 'times', 'times new roman']
+
 
 class screen_data:
     def __init__(self, size=15):
+        good_font = None
+        for font in FONTS:
+            good_font = pygame.font.match_font(font)
+            if good_font:
+                break
         self.text = pygame.font.Font(pygame.font.match_font('menlo'), size)
         self.default_color = (109, 189, 255)
         self.size = size

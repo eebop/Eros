@@ -5,6 +5,7 @@ can recive too
 from lan.download_protocol import recive_only, send_only
 import time
 import sys
+import os
 
 class send(send_only, recive_only):
     def __init__(self, port=10998):
@@ -16,7 +17,8 @@ class send(send_only, recive_only):
                 recive_only.__init__(self, self.other_address, port+1)
                 done = True
             except ConnectionRefusedError:
-                print('Connection refused... Trying again (try number %s/20)'%count)
+                if 'DEBUG' in os.environ.keys():
+                    print('Connection refused... Trying again (try number %s/20)'%count)
                 time.sleep(.1)
                 count += 1
         if count == 20:
