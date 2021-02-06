@@ -71,4 +71,5 @@ class player(base, norm_keys_wrapper):
     def kill(self):
         request()._items.append(request().get_item('explosions', loc=self.loc, rot=self.degrees-90))
         request()._items.pop(request()._items.index(self))
-        self.image=pygame.Surface((1,1))
+        self.image = pygame.Surface((1,1))
+        request().player_killed(self.isplayer)

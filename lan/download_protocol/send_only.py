@@ -26,6 +26,7 @@ class send:
 
     def send(self, obj):
         if type(obj) == pygame.Surface:
+            self.send(obj.get_size())
             data = zlib.compress(pygame.image.tostring(obj, 'RGB'))
         else:
             data = pickle.dumps(obj)

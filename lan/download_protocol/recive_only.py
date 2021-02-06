@@ -11,6 +11,8 @@ class recive:
 
 
     def recive(self, issurface=True):
+        if issurface:
+            size = self.recive(False)
         num_num_bytes = ord(self.reciver.recv(1))
         num_bytes = ord(self.reciver.recv(num_num_bytes).decode('utf-8'))
         data = []

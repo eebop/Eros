@@ -12,6 +12,9 @@ class Framework:
         self.move_extention = self.get_item('move')
         self.setup_rockets()
 
+    def player_killed(isplayer):
+        pass
+
     def setup_rockets(self):
         self._items = [self.get_item("player", True), self.get_item("opponent")]
 
