@@ -20,8 +20,8 @@ class recive:
             data.append(self.reciver.recv(1))
         value = b''.join(data)
         if issurface:
-            answer = zlib.decompress(value)
-            return pygame.image.fromstring(answer, size, 'RGB')
+            value = zlib.decompress(value)
+            return pygame.image.fromstring(value, size, 'RGB')
         else:
             return pickle.loads(value)
 
