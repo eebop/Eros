@@ -23,7 +23,7 @@ screen = pygame.display.set_mode((800, 800), pygame.RESIZABLE)
 
 pygame.display.set_caption('Eros')
 
-
+try:
 
     double_socket = lan.run(screen)
 
