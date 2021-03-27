@@ -16,7 +16,7 @@ writer2 = screen_data.screen_data(45)
 
 def resize_surface(double_socket):
     size = double_socket.recive(False)
-    pygame.event.post(pygame.event.Event(pygame.VIDEORESIZE, size, *size))
+    pygame.event.post(pygame.event.Event(pygame.VIDEORESIZE, size=size, w=size[0], h=size[1]))
 
 def display(screen, words, level, writer=writer):
     level *= 200
