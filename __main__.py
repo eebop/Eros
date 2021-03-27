@@ -32,6 +32,6 @@ try:
     handler.run(screen, double_socket)
 
 except (TypeError, BrokenPipeError, ConnectionResetError, KeyboardInterrupt):
-    raise
+    pass
 except OSError:
     sys.exit("Sorry, you don't have internet right now.")
