@@ -5,11 +5,11 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 try:
     import pygame
 except ModuleNotFoundError:
-    sys.exit('Needs module pygame to work properly. To install, run `python%s -m pip install pygame`', '.'.join(map(str, python.vernum[:3])))
+    sys.exit('Needs module pygame to work properly. To install, run `python%s -m pip install pygame`' % sys.version.split(' ')[0])
 try:
     import numpy
 except ModuleNotFoundError:
-    sys.exit('Needs module numpy to work properly. To install, run `python%s -m pip install numpy`', '.'.join(map(str, python.vernum[:3])))
+    sys.exit('Needs module numpy to work properly. To install, run `python%s -m pip install numpy`' % sys.version.split(' ')[0])
 
 
 pygame.init()
