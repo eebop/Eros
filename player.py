@@ -25,9 +25,10 @@ class player(base, norm_keys_wrapper):
         self.respond_data = [10]
         norm_keys_wrapper.__init__(self)
         color = request().extentions['color'][isplayer]
+        arr = pygame.PixelArray(self.image)
         for x in range(self.image.get_width()):
             for y in range(self.image.get_height()):
-                if self.image.get_at_mapped((x, y)) != 0x000000:
+                if arr[x, y] == 0xff808080:
                     self.image.set_at((x, y), color)
 
 
