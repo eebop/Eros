@@ -22,8 +22,7 @@ class send(send_only, recive_only):
                 time.sleep(.1)
                 count += 1
         if count == 20:
-            print('Internal Error: secondary conection failed too many times')
-            sys.exit()
+            sys.exit('Internal Error: secondary conection failed too many times')
 
 def _test():
     s = send(1025)

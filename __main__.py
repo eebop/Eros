@@ -4,11 +4,11 @@ import socket
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 try:
     import pygame
-except ModuleNotFoundError:
+except:
     sys.exit('Needs module pygame to work properly. To install, run `python%s -m pip install pygame`' % sys.version.split(' ')[0])
 try:
     import numpy
-except ModuleNotFoundError:
+except:
     sys.exit('Needs module numpy to work properly. To install, run `python%s -m pip install numpy`' % sys.version.split(' ')[0])
 
 

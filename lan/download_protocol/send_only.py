@@ -2,7 +2,7 @@ import socket
 import pygame
 from lan.download_protocol import get_local_address
 import zlib
-import pickle
+import json
 import os
 
 
@@ -29,7 +29,7 @@ class send:
             self.send(obj.get_size())
             data = zlib.compress(pygame.image.tostring(obj, 'RGB'))
         else:
-            data = pickle.dumps(obj)
+            data = bytes(json.dumps(obj), 'utf-8')
         size = bytes(chr(len(data)), 'utf-8')
         self.clientsocket.send(bytes(chr(len(size)), 'utf-8'))
         self.clientsocket.send(size)

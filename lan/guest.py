@@ -27,11 +27,5 @@ class guest:
         return self.get_formatted(events)
 
     def get_formatted(self, events):
-        events = [EventWrapper(e.type, e.key) for e in events if e.type in (pygame.KEYDOWN, pygame.KEYUP)]
+        events = [{'type': e.type, 'key': e.key} for e in events if e.type in (pygame.KEYDOWN, pygame.KEYUP)]
         return events
-
-
-class EventWrapper:
-    def __init__(self, type, key):
-        self.type = type
-        self.key = key

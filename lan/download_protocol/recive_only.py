@@ -1,5 +1,5 @@
 import socket
-import pickle
+import json
 import zlib
 import pygame
 
@@ -23,7 +23,7 @@ class recive:
             value = zlib.decompress(value)
             return pygame.image.fromstring(value, size, 'RGB')
         else:
-            return pickle.loads(value)
+            return json.loads(value)
 
     def _close(self, s):
         try:

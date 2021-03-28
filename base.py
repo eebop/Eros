@@ -12,3 +12,7 @@ class base:
 def request():
     import sys
     return getattr(sys.modules['__main__'], 'handler')
+
+class Wrapper:
+    def __init__(self, kwargs):
+        self.__dict__.update(kwargs)
