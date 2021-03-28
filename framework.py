@@ -6,7 +6,7 @@ import lan
 
 class Framework:
     def __init__(self):
-        self.extentions = {'screen_data': self.get_item("screen_data"), 'target': self.get_item('target')}
+        self.extentions = {'screen_data': self.get_item("screen_data"), 'target': self.get_item('target'), 'color': self.get_item('color')}
         self.absolute_extentions = {}
         self._extention_data = {}
         self.move_extention = self.get_item('move')
@@ -34,7 +34,7 @@ class Framework:
             [x.run(screen, e) for x in self.extentions.values() if x.enabled()]
             pygame.display.flip()
             self.double_socket.send(screen)
-            screen.fill((32, 32, 32))
+            screen.fill((0, 0, 0))
 
     def run_normal(self, t):
         while not time.time() - .05 >= t:

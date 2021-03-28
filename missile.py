@@ -8,7 +8,12 @@ from base import base, request
 class missile:
     def __init__(self, loc, islaunchedbyplayer):
         self._loc = loc
-        self.s = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'missile.png'))
+        #self.s = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'missile.png'))
+        s = pygame.Surface((10, 10))
+        s.set_colorkey((0, 0, 0))
+        color = request().extentions['color'][islaunchedbyplayer]
+        pygame.draw.circle(s, color, (5, 5), 5)
+        self.s = s
         self.goal = np.array([500, 500], dtype=float)
         self.frozen = False
         self.IsLaunchedByPlayer = islaunchedbyplayer
