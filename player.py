@@ -16,7 +16,6 @@ class player(base, norm_keys_wrapper):
         self.location = None # To placate move.move
         self.degrees = degrees
         self.isplayer = isplayer
-        self.update_movement()
         self.w = False
         self.a = False
         self.d = False
@@ -30,6 +29,7 @@ class player(base, norm_keys_wrapper):
             for y in range(self.image.get_height()):
                 if arr[x, y] == 0xff808080:
                     self.image.set_at((x, y), color)
+        self.update_movement()
 
 
         self.missile_loc = False
