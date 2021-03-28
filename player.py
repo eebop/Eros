@@ -66,7 +66,7 @@ class player(base, norm_keys_wrapper):
             self.degrees -= 2
             self.update_movement()
 
-        if self.f == True and (time.time() - self.last_shot) > 1:
+        if self.f == True and (time.time() - self.last_shot) > .5:
             request()._items.append(request().get_item('missile', self.loc.copy() + (np.array([[0, self.image_now.get_size()[0]*2][self.missile_loc], self.image_now.get_size()[1]])/2), self.isplayer))
             self.missile_loc = not self.missile_loc
             self.last_shot = time.time()

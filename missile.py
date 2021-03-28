@@ -4,6 +4,7 @@ import sys
 import os
 import numpy as np
 from base import base, request
+import time
 
 class missile:
     def __init__(self, loc, islaunchedbyplayer):
@@ -17,6 +18,7 @@ class missile:
         self.goal = np.array([500, 500], dtype=float)
         self.frozen = False
         self.IsLaunchedByPlayer = islaunchedbyplayer
+        self.time = time.time()
 
     def update(self, time, data):
         self.get_goal()
