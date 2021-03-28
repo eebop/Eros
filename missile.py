@@ -30,6 +30,7 @@ class missile:
                 radians = math.atan2(*(slope[::-1]))
             else:
                 radians = math.pi/2 if slope[1] > 0 else -math.pi/2
+            print(radians)
             self._loc += np.array([math.cos(radians), math.sin(radians)])
 
 

@@ -6,6 +6,7 @@ import lan
 
 class Framework:
     def __init__(self):
+        sys.modules['__main__'].handler = self
         self.extentions = {'screen_data': self.get_item("screen_data"), 'target': self.get_item('target'), 'color': self.get_item('color')}
         self.absolute_extentions = {}
         self._extention_data = {}

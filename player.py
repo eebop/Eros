@@ -9,7 +9,6 @@ import time
 class player(base, norm_keys_wrapper):
     def __init__(self, isplayer=True, location=(600,400), degrees=180):
         self.image = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'poco3.png'))
-        self.image_now = self.image
         if not location:
             self.loc = np.array([400, 400], dtype=float)
         else:
@@ -25,12 +24,18 @@ class player(base, norm_keys_wrapper):
         self.data = 'Middleweight\nHeat: %s%% of max'
         self.respond_data = [10]
         norm_keys_wrapper.__init__(self)
+        color = request().extentions['color'][isplayer]
+        for x in range(self.image.get_width()):
+            for y in range(self.image.get_height()):
+                if self.image.get_at_mapped((x, y)) != 0x000000:
+                    self.image.set_at((x, y), color)
 
 
         self.missile_loc = False
         self.target = list(reversed(self.loc + np.array(self.image_now.get_size())/2))
         self.last_shot = 2
         self.time = 0
+
 
 
     def update_movement(self):
