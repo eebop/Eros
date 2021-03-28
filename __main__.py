@@ -23,15 +23,8 @@ screen = pygame.display.set_mode((800, 800), pygame.RESIZABLE)
 
 pygame.display.set_caption('Eros')
 
-try:
+double_socket = lan.run(screen)
 
-    double_socket = lan.run(screen)
+handler = framework.Framework()
 
-    handler = framework.Framework()
-
-    handler.run(screen, double_socket)
-
-except (TypeError, BrokenPipeError, ConnectionResetError, KeyboardInterrupt):
-    pass
-except OSError:
-    sys.exit("Sorry, you don't have internet right now.")
+handler.run(screen, double_socket)
