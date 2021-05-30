@@ -23,7 +23,7 @@ class Guest:
 
 
     def _process_events(self, events):
-        sys.exit() if any([event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_c and event.mod == pygame.KMOD_LCTRL) for event in events]) else None
+        [sys.exit() for event in events if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_c and event.mod == pygame.KMOD_LCTRL)]
         return self.get_formatted(events)
 
     def get_formatted(self, events):
