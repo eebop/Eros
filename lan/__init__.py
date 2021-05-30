@@ -182,8 +182,8 @@ def run_as_guest(screen):
             valid_address = True
         except ConnectionRefusedError:
             screen.fill((0, 0, 0))
-            display(screen, 'That is invalid (CRE)', 0, writer2)
+            display(screen, 'The connection was refuseds', 0, writer2)
             pygame.display.flip()
             time.sleep(1.5)
-    g = lan.guest.guest(double_socket, screen)
+    g = lan.guest.Guest(double_socket, screen)
     g.loop()

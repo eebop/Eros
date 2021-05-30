@@ -3,7 +3,7 @@ import pygame
 from select import select
 from norm_keys_wrapper import norm_keys_wrapper
 
-class guest:
+class Guest:
     def __init__(self, double_socket, screen):
         self.double_socket = double_socket
         self.screen = screen
