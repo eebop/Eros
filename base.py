@@ -16,3 +16,6 @@ def request():
 class Wrapper:
     def __init__(self, kwargs):
         self.__dict__.update(kwargs)
+
+    def __str__(self):
+        return [x for x in self.__dict__ if not x in object().__dict__]

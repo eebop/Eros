@@ -17,6 +17,9 @@ class opponent(player, base):
             try:
                 lan.resize_surface(double_socket)
                 move_data = [Wrapper(kwargs) for kwargs in double_socket.recive(False)]
+                if move_data:
+                    print('ping')
+                    print(move_data)
             except TypeError:
                 # Socket killed
                 sys.exit()
